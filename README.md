@@ -23,7 +23,7 @@ WHERE customers.country = country AND orders.id_customer = customers.id
 
 2.3	Can you write a SQL query to find the name of the highest price product sold to an Italian customer?
 
-SELECT products.name, MAX(products.price) 
+SELECT products.name, MAX(products.price) //
 FROM customers, orders, orders_items, products 
 WHERE customers.country = 'Italy' AND orders.id_customer = customers.id AND orders_items.id_order = orders.id AND products.id = orders_items.id_product
 
@@ -32,6 +32,7 @@ WHERE customers.country = 'Italy' AND orders.id_customer = customers.id AND orde
 In case there are a lot of queries, it might be more efficient to insert more information about the customer into the 'orders' table, so that it would not be necessary to retrieve information from multiple tables every time an order needs to be executed. Instead of the column customer_id, two separate columns could be added to the table: customer_name and customer_address, which should suffice to process the order and it would avoid having to look the customer up separately based on customer_id. 
 
 2.5 What would you change if the amount of data is too big to run these queries? (suppose to have 500TB of data)
+
 If the amount of data was too big to run the queries, I would remove some redundant information contained in the tables, e.g. the name of the product in the 'products' table, which is not necessary in processing the order as well as the date of birth of the customer (admittedly, this information could be useful for market analysis, but it is not necessary to process the order). I would also merge the firstname and lastname columns in the 'customers' table, which would allow to more quickly access the full name of a customer. The 'id' column in the 'orders_items' table is also not being used in other tables, so it might not be necessary to identify the order. 
 
 
