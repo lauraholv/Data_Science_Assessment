@@ -23,7 +23,7 @@ WHERE customers.country = country AND orders.id_customer = customers.id
 
 2.3	Can you write a SQL query to find the name of the highest price product sold to an Italian customer?
 
-SELECT products.name, MAX(products.price) //
+SELECT products.name, MAX(products.price)
 FROM customers, orders, orders_items, products 
 WHERE customers.country = 'Italy' AND orders.id_customer = customers.id AND orders_items.id_order = orders.id AND products.id = orders_items.id_product
 
